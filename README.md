@@ -1,6 +1,6 @@
 Deploy RabbitMQ: `docker-compose up --build -d`
 
-Run celery worker `celery -A main.celery worker --loglevel=info -Q universities,university`
+Run celery worker: `celery -A main.celery worker --loglevel=info -Q universities,university`
 
 Run flower: `celery -A main.celery flower --port=5555`
 
