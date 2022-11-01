@@ -1,0 +1,21 @@
+version: "3.11"
+
+services:
+
+# RabbitMQ service
+  rabbit:
+    image: rabbitmq:management-alpine
+    container_name: rabbit
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBIT_LOGIN}
+      RABBITMQ_DEFAULT_PASS: ${RABBIT_PASSWORD}
+    volumes:
+      - /var/lib/rabbitmq/
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      timeout: 20s
+      interval: 2s
+      retries: 10
+    ports:
+      - ${WORK_PORT}:5672
+      - ${RABBIT_UI_PORT}:15672
